@@ -5,7 +5,7 @@ module tb();
     reg clk = 0;
     reg rst_n = 0;
     reg acrescer = 0;
-    reg decrecer = 0;
+    reg decrescer = 0;
     wire [7:0] saida;
 
     // Instancia o DUT
@@ -13,7 +13,7 @@ module tb();
         .clk(clk),
         .rst_n(rst_n),
         .acrescer(acrescer),
-        .decrecer(decrecer),
+        .decrescer(decrescer),
         .saida(saida)
     );
 
@@ -44,14 +44,14 @@ module tb();
             end
 
             // Extrai sinais da linha
-            {acrescer, decrecer} = memoria[i][9:8];
+            {acrescer, decrescer} = memoria[i][9:8];
             #10; // Espera 1 ciclo de clock
             if (saida !== memoria[i][7:0]) begin
                 $display("Erro na linha %0d: acrescer=%b, decrecer=%b, esperado=%d, obtido=%d",
-                          i, acrescer, decrecer, memoria[i][7:0], saida);
+                          i, acrescer, decrescer, memoria[i][7:0], saida);
             end else begin
                 $display("=== OK na linha %0d: acrescer=%b, decrecer=%b, saida=%d",
-                          i, acrescer, decrecer, saida);
+                          i, acrescer, decrescer, saida);
             end
         end
 
